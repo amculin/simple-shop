@@ -19,6 +19,12 @@ use Yii;
  * @property int $is_using_simpley_pay 0 = false; 1 = true;
  * @property string|null $created_time
  * @property string|null $updated_time
+ *
+ * @property MemberCart[] $memberCarts
+ * @property SimplePay[] $simplePays
+ * @property UserAddress[] $userAddresses
+ * @property UserBankAccount[] $userBankAccounts
+ * @property UserBiodata[] $userBiodatas
  */
 class User extends \yii\db\ActiveRecord
 {
@@ -63,5 +69,55 @@ class User extends \yii\db\ActiveRecord
             'created_time' => 'Created Time',
             'updated_time' => 'Updated Time',
         ];
+    }
+
+    /**
+     * Gets query for [[MemberCarts]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMemberCarts()
+    {
+        return $this->hasMany(MemberCart::className(), ['user_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[SimplePays]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSimplePays()
+    {
+        return $this->hasMany(SimplePay::className(), ['user_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[UserAddresses]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUserAddresses()
+    {
+        return $this->hasMany(UserAddress::className(), ['user_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[UserBankAccounts]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUserBankAccounts()
+    {
+        return $this->hasMany(UserBankAccount::className(), ['user_id' => 'id']);
+    }
+
+    /**
+     * Gets query for [[UserBiodatas]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUserBiodatas()
+    {
+        return $this->hasMany(UserBiodata::className(), ['user_id' => 'id']);
     }
 }

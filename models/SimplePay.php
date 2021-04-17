@@ -12,6 +12,8 @@ use Yii;
  * @property int $balance
  * @property string $created_date
  * @property string|null $updated_date
+ *
+ * @property User $user
  */
 class SimplePay extends \yii\db\ActiveRecord
 {
@@ -34,6 +36,7 @@ class SimplePay extends \yii\db\ActiveRecord
             [['created_date', 'updated_date'], 'safe'],
             [['account_number'], 'string', 'max' => 8],
             [['account_number'], 'unique'],
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
 
@@ -49,5 +52,15 @@ class SimplePay extends \yii\db\ActiveRecord
             'created_date' => 'Created Date',
             'updated_date' => 'Updated Date',
         ];
+    }
+
+    /**
+     * Gets query for [[User]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 }

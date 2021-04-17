@@ -13,6 +13,9 @@ use Yii;
  * @property int $account_number
  * @property string $created_date
  * @property string|null $updated_date
+ *
+ * @property DataBank $bank
+ * @property User $user
  */
 class UserBankAccount extends \yii\db\ActiveRecord
 {
@@ -33,6 +36,8 @@ class UserBankAccount extends \yii\db\ActiveRecord
             [['user_id', 'bank_id', 'account_number'], 'required'],
             [['user_id', 'bank_id', 'account_number'], 'integer'],
             [['created_date', 'updated_date'], 'safe'],
+            [['bank_id'], 'exist', 'skipOnError' => true, 'targetClass' => DataBank::className(), 'targetAttribute' => ['bank_id' => 'id']],
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
 
@@ -49,5 +54,25 @@ class UserBankAccount extends \yii\db\ActiveRecord
             'created_date' => 'Created Date',
             'updated_date' => 'Updated Date',
         ];
+    }
+
+    /**
+     * Gets query for [[Bank]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getBank()
+    {
+        return $this->hasOne(DataBank::className(), ['id' => 'bank_id']);
+    }
+
+    /**
+     * Gets query for [[User]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 }

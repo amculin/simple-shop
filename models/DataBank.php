@@ -11,6 +11,8 @@ use Yii;
  * @property string $bank_name
  * @property string $created_date
  * @property string|null $updated_date
+ *
+ * @property UserBankAccount[] $userBankAccounts
  */
 class DataBank extends \yii\db\ActiveRecord
 {
@@ -45,5 +47,15 @@ class DataBank extends \yii\db\ActiveRecord
             'created_date' => 'Created Date',
             'updated_date' => 'Updated Date',
         ];
+    }
+
+    /**
+     * Gets query for [[UserBankAccounts]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUserBankAccounts()
+    {
+        return $this->hasMany(UserBankAccount::className(), ['bank_id' => 'id']);
     }
 }

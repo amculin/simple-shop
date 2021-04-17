@@ -14,6 +14,8 @@ use Yii;
  * @property string $account_number
  * @property string $account_name
  * @property string $created_date
+ *
+ * @property MemberCart $memberCart
  */
 class PaymentTransaction extends \yii\db\ActiveRecord
 {
@@ -36,6 +38,7 @@ class PaymentTransaction extends \yii\db\ActiveRecord
             [['created_date'], 'safe'],
             [['account_number'], 'string', 'max' => 32],
             [['account_name'], 'string', 'max' => 64],
+            [['member_cart_id'], 'exist', 'skipOnError' => true, 'targetClass' => MemberCart::className(), 'targetAttribute' => ['member_cart_id' => 'id']],
         ];
     }
 
@@ -53,5 +56,15 @@ class PaymentTransaction extends \yii\db\ActiveRecord
             'account_name' => 'Account Name',
             'created_date' => 'Created Date',
         ];
+    }
+
+    /**
+     * Gets query for [[MemberCart]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMemberCart()
+    {
+        return $this->hasOne(MemberCart::className(), ['id' => 'member_cart_id']);
     }
 }

@@ -12,6 +12,8 @@ use Yii;
  * @property int|null $parent_id
  * @property string $created_date
  * @property string|null $updated_date
+ *
+ * @property Item[] $items
  */
 class ItemCategory extends \yii\db\ActiveRecord
 {
@@ -48,5 +50,15 @@ class ItemCategory extends \yii\db\ActiveRecord
             'created_date' => 'Created Date',
             'updated_date' => 'Updated Date',
         ];
+    }
+
+    /**
+     * Gets query for [[Items]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getItems()
+    {
+        return $this->hasMany(Item::className(), ['item_category_id' => 'id']);
     }
 }

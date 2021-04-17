@@ -15,6 +15,11 @@ use Yii;
  * @property int $stock
  * @property string $created_date
  * @property string|null $updated_date
+ *
+ * @property MemberCart[] $carts
+ * @property EventItem[] $eventItems
+ * @property ItemCategory $itemCategory
+ * @property MemberCartItem[] $memberCartItems
  */
 class Item extends \yii\db\ActiveRecord
 {
@@ -38,6 +43,7 @@ class Item extends \yii\db\ActiveRecord
             [['item_code'], 'string', 'max' => 15],
             [['item_name'], 'string', 'max' => 255],
             [['item_code'], 'unique'],
+            [['item_category_id'], 'exist', 'skipOnError' => true, 'targetClass' => ItemCategory::className(), 'targetAttribute' => ['item_category_id' => 'id']],
         ];
     }
 
@@ -56,5 +62,45 @@ class Item extends \yii\db\ActiveRecord
             'created_date' => 'Created Date',
             'updated_date' => 'Updated Date',
         ];
+    }
+
+    /**
+     * Gets query for [[Carts]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCarts()
+    {
+        return $this->hasMany(MemberCart::className(), ['id' => 'cart_id'])->viaTable('member_cart_item', ['item_code' => 'item_code']);
+    }
+
+    /**
+     * Gets query for [[EventItems]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEventItems()
+    {
+        return $this->hasMany(EventItem::className(), ['item_code' => 'item_code']);
+    }
+
+    /**
+     * Gets query for [[ItemCategory]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getItemCategory()
+    {
+        return $this->hasOne(ItemCategory::className(), ['id' => 'item_category_id']);
+    }
+
+    /**
+     * Gets query for [[MemberCartItems]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMemberCartItems()
+    {
+        return $this->hasMany(MemberCartItem::className(), ['item_code' => 'item_code']);
     }
 }

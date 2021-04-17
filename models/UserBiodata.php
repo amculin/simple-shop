@@ -16,6 +16,8 @@ use Yii;
  * @property int $sex 1 = Male; 2 = Female;
  * @property string $created_date
  * @property string|null $updated_date
+ *
+ * @property User $user
  */
 class UserBiodata extends \yii\db\ActiveRecord
 {
@@ -38,6 +40,7 @@ class UserBiodata extends \yii\db\ActiveRecord
             [['birth_date', 'created_date', 'updated_date'], 'safe'],
             [['first_name', 'last_name'], 'string', 'max' => 32],
             [['birth_place'], 'string', 'max' => 4],
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
 
@@ -57,5 +60,15 @@ class UserBiodata extends \yii\db\ActiveRecord
             'created_date' => 'Created Date',
             'updated_date' => 'Updated Date',
         ];
+    }
+
+    /**
+     * Gets query for [[User]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 }

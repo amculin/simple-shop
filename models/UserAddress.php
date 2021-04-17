@@ -18,6 +18,8 @@ use Yii;
  * @property string $address
  * @property string $created_date
  * @property string $updated_date
+ *
+ * @property User $user
  */
 class UserAddress extends \yii\db\ActiveRecord
 {
@@ -42,6 +44,7 @@ class UserAddress extends \yii\db\ActiveRecord
             [['district_id'], 'string', 'max' => 7],
             [['city_id'], 'string', 'max' => 4],
             [['address'], 'string', 'max' => 255],
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
 
@@ -63,5 +66,15 @@ class UserAddress extends \yii\db\ActiveRecord
             'created_date' => 'Created Date',
             'updated_date' => 'Updated Date',
         ];
+    }
+
+    /**
+     * Gets query for [[User]].
+     *
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 }
