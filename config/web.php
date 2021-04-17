@@ -31,7 +31,7 @@ $config = [
             'rules' => [
                 [
 					'class' => 'yii\rest\UrlRule',
-					'controller' => 'city'
+					'controller' => ['city', 'district', 'province', 'village']
 				],
             ]
         ],
