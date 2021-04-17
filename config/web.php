@@ -23,22 +23,25 @@ $config = [
                 'application/json' => 'yii\web\JsonParser',
             ]
         ],
-        'url' => [
+        'urlManager' => [
             'class' => 'yii\web\urlManager',
             'enablePrettyUrl' => true,
             'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
-                $urlPrefix . '/view/<id>' => 'document-form/view',
+                [
+					'class' => 'yii\rest\UrlRule',
+					'controller' => 'city'
+				],
             ]
         ],
-        'urlManager' => [
+        /* 'urlManager' => [
             'enablePrettyUrl' => true,
             'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
             ],
-        ],
+        ], */
         'user' => [
             'class'=>'yii\web\User',
             'identityClass' => 'app\models\User',

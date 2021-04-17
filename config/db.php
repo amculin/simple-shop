@@ -1,10 +1,10 @@
 <?php
 return [
-    'db_docnet' => [
+    'db_simple_shop' => [
         'class' => 'yii\db\Connection',
-        'dsn' => 'mysql:host=localhost:3000;dbname=bersama_docnet',
-        'username' => 'appdev',
-        'password' => 'appdev2019',
+        'dsn' => 'mysql:host=localhost;dbname=test_simple_shop',
+        'username' => 'root',
+        'password' => '',
         'charset' => 'utf8mb4',
     ],
 ];
