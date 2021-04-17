@@ -45,7 +45,7 @@ $config = [
         'user' => [
             'class'=>'yii\web\User',
             'identityClass' => 'app\models\Users',
-			'enableSession' => false,
+            'enableSession' => false,
             'enableAutoLogin' => true,
             'loginUrl' => null,
         ],

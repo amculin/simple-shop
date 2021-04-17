@@ -75,9 +75,9 @@ class Users extends User implements \yii\web\IdentityInterface
 
         if ($this->isNewRecord) {
             $this->password_hash = Yii::$app->getSecurity()->generatePasswordHash($this->password);
-			$this->auth_key = md5(Yii::$app->getSecurity()->generatePasswordHash($this->password_hash));
-			$this->status = $this::STATUS_ACTIVE;
-		}
+            $this->auth_key = md5(Yii::$app->getSecurity()->generatePasswordHash($this->password_hash));
+            $this->status = $this::STATUS_ACTIVE;
+        }
 
         return true;
     }
