@@ -31,7 +31,7 @@ $config = [
             'rules' => [
                 [
 					'class' => 'yii\rest\UrlRule',
-					'controller' => ['city', 'district', 'province', 'village']
+					'controller' => ['city', 'district', 'province', 'user', 'village']
 				],
             ]
         ],
@@ -44,9 +44,10 @@ $config = [
         ], */
         'user' => [
             'class'=>'yii\web\User',
-            'identityClass' => 'app\models\User',
+            'identityClass' => 'app\models\Users',
+			'enableSession' => false,
             'enableAutoLogin' => true,
-            'loginUrl' => ['/login'],
+            'loginUrl' => null,
         ],
     ],
 ];
