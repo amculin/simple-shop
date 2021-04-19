@@ -30,19 +30,17 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 [
-					'class' => 'yii\rest\UrlRule',
-					'controller' => ['city', 'district', 'item', 'item-category', 'province', 'user', 'village']
-				],
-                'items/<id>' => 'item/view',
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => [
+                        'city', 'district', 'event', 'item', 'item-category', 'province', 'simple-pay', 'user', 'village'
+                    ]
+                ],
+                'GET,HEAD items/<id>' => 'item/view',
+                'PUT,PATCH items/<id>' => 'item/update',
+                'PUT,PATCH simple-pays/<id>' => 'simple-pay/update',
+                'GET,HEAD simple-pays/<id>' => 'simple-pay/view',
             ]
         ],
-        /* 'urlManager' => [
-            'enablePrettyUrl' => true,
-            'enableStrictParsing' => true,
-            'showScriptName' => false,
-            'rules' => [
-            ],
-        ], */
         'user' => [
             'class'=>'yii\web\User',
             'identityClass' => 'app\models\Users',

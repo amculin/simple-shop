@@ -16,6 +16,7 @@ use Yii;
  * @property string $email
  * @property int $phone_number
  * @property int $status 0 = Inactive | 1 = Active
+ * @property int $is_using_simple_pay 0 = false; 1 = true;
  * @property string|null $created_time
  * @property string|null $updated_time
  *
@@ -27,6 +28,9 @@ use Yii;
  */
 class User extends \yii\db\ActiveRecord
 {
+    const IS_NOT_USING_SIMPLE_PAY = 0;
+    const IS_USING_SIMPLE_PAY = 1;
+
     /**
      * {@inheritdoc}
      */
@@ -42,9 +46,9 @@ class User extends \yii\db\ActiveRecord
     {
         return [
             [['username', 'user_type', 'auth_key', 'password_hash', 'email', 'phone_number'], 'required'],
-			[['username', 'email', 'phone_number'], 'unique'],
-			['email', 'email'],
-            [['user_type', 'phone_number', 'status'], 'integer'],
+            [['username', 'email', 'phone_number'], 'unique'],
+            ['email', 'email'],
+            [['user_type', 'phone_number', 'status', 'is_using_simple_pay'], 'integer'],
             [['created_time', 'updated_time'], 'safe'],
             [['username', 'auth_key'], 'string', 'max' => 32],
             [['password_hash', 'password_reset_token', 'email'], 'string', 'max' => 255],
@@ -66,6 +70,7 @@ class User extends \yii\db\ActiveRecord
             'email' => 'Email',
             'phone_number' => 'Phone Number',
             'status' => 'Status',
+            'is_using_simple_pay' => 'Is Using Simple Pay',
             'created_time' => 'Created Time',
             'updated_time' => 'Updated Time',
         ];
