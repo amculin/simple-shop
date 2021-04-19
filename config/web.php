@@ -31,8 +31,9 @@ $config = [
             'rules' => [
                 [
 					'class' => 'yii\rest\UrlRule',
-					'controller' => ['city', 'district', 'province', 'user', 'village']
+					'controller' => ['city', 'district', 'item', 'item-category', 'province', 'user', 'village']
 				],
+                'items/<id>' => 'item/view',
             ]
         ],
         /* 'urlManager' => [
