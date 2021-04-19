@@ -38,6 +38,7 @@ class Item extends \yii\db\ActiveRecord
     {
         return [
             [['item_code', 'item_name', 'weight', 'base_price', 'item_category_id', 'stock'], 'required'],
+            ['item_code', 'unique'],
             [['weight', 'base_price', 'item_category_id', 'stock'], 'integer'],
             [['created_date', 'updated_date'], 'safe'],
             [['item_code'], 'string', 'max' => 15],
@@ -102,5 +103,19 @@ class Item extends \yii\db\ActiveRecord
     public function getMemberCartItems()
     {
         return $this->hasMany(MemberCartItem::className(), ['item_code' => 'item_code']);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function beforeValidate()
+    {
+        parent::beforeValidate();
+
+        if ($this->isNewRecord) {
+            $this->item_code = strtoupper(substr(md5($this->item_name . $this->item_category_id . date('Y-m-d H:i:s')), 0, 15));
+        }
+
+        return true;
     }
 }

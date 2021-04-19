@@ -61,4 +61,18 @@ class ItemCategory extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Item::className(), ['item_category_id' => 'id']);
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function beforeValidate()
+    {
+        parent::beforeValidate();
+
+        if (! $this->isNewRecord) {
+            $this->updated_date = date('Y-m-d H:i:s');
+        }
+
+        return true;
+    }
 }

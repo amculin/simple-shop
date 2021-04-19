@@ -20,8 +20,11 @@ use Yii;
  */
 class Users extends User implements \yii\web\IdentityInterface
 {
-    const STATUS_INACTIVE = 0;
-    const STATUS_ACTIVE = 1;
+    const USER_TYPE_ADMIN   = 1;
+    const USER_TYPE_MEMBER  = 2;
+
+    const STATUS_INACTIVE   = 0;
+    const STATUS_ACTIVE     = 1;
 
     public $password;
 
