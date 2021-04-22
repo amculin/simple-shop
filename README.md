@@ -26,7 +26,3 @@ Pengujian bisa menggunakan Postman versi terbaru (Postman v8.2.3). Import file `
 
 ## Otentikasi
 Sistem ini menggunakan otentikasi sederhana dengan melewatkan parameter `access-token` melalui query params. Access token yang disediakan bisa dilihat pada tabel user pada kolom `auth_key`
-
-## Kontributor DocNet *Micro Version*
-
-- Fahmi Auliya Tsani (tele: @choose_a_username, email: fahmi.tsani@spesolution.net)
