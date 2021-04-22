@@ -1,0 +1,418 @@
+{
+	"info": {
+		"_postman_id": "837bab8c-9499-4f41-ab09-030197b379bc",
+		"name": "Simple Shop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User Management",
+			"item": [
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users?access-token={{admin_token}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "access-token",
+									"value": "{{admin_token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"member\",\r\n    \"user_type\": 2,\r\n    \"password\": \"member123\",\r\n    \"email\": \"contoh.member.1@email.com\",\r\n    \"phone_number\": \"080888888881\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users?access-token={{admin_token}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users"
+							],
+							"query": [
+								{
+									"key": "access-token",
+									"value": "{{admin_token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Item Management",
+			"item": [
+				{
+					"name": "Get All Item Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/item-categories?access-token={{admin_token}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"item-categories"
+							],
+							"query": [
+								{
+									"key": "access-token",
+									"value": "{{admin_token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Item Category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"category_name\": \"Television\",\r\n    \"parent_id\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/item-categories?access-token={{admin_token}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"item-categories"
+							],
+							"query": [
+								{
+									"key": "access-token",
+									"value": "{{admin_token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Item Category",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"category_name\": \"Scripture\",\r\n    \"parent_id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/item-categories/3?access-token={{admin_token}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"item-categories",
+								"3"
+							],
+							"query": [
+								{
+									"key": "access-token",
+									"value": "{{admin_token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Items",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/items?access-token={{admin_token}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"items"
+							],
+							"query": [
+								{
+									"key": "access-token",
+									"value": "{{admin_token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Item",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"item_name\": \"Sony Bravia KD-43W660G 43 Inch Smart HDR Full HD LED TV 43W660G\",\r\n    \"weight\": 8200,\r\n    \"base_price\": 6000000,\r\n    \"item_category_id\": 8,\r\n    \"stock\": 25\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/items?access-token={{admin_token}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"items"
+							],
+							"query": [
+								{
+									"key": "access-token",
+									"value": "{{admin_token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Item",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/items/4654EC99063ADF2?access-token={{admin_token}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"items",
+								"4654EC99063ADF2"
+							],
+							"query": [
+								{
+									"key": "access-token",
+									"value": "{{admin_token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Single Item Category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/item-categories/1?access-token={{admin_token}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"item-categories",
+								"1"
+							],
+							"query": [
+								{
+									"key": "access-token",
+									"value": "{{admin_token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Payment Management",
+			"item": [
+				{
+					"name": "Simple Pay",
+					"item": [
+						{
+							"name": "Get All Simple Pay Accounts",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/simple-pays?access-token={{admin_token}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"simple-pays"
+									],
+									"query": [
+										{
+											"key": "access-token",
+											"value": "{{admin_token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Simple Pay Account",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"balance\": 350000\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/simple-pays?access-token={{member_token}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"simple-pays"
+									],
+									"query": [
+										{
+											"key": "access-token",
+											"value": "{{member_token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Top Up Simple Pay Balance",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"balance\": 420000\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/simple-pays/C81E728D?access-token={{member_token}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"simple-pays",
+										"C81E728D"
+									],
+									"query": [
+										{
+											"key": "access-token",
+											"value": "{{member_token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Single Simple Pay Account",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/simple-pays/C81E728D?access-token={{member_token}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"simple-pays",
+										"C81E728D"
+									],
+									"query": [
+										{
+											"key": "access-token",
+											"value": "{{member_token}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Event Management",
+			"item": [
+				{
+					"name": "Get All Events",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/events?access-token={{admin_token}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"events"
+							],
+							"query": [
+								{
+									"key": "access-token",
+									"value": "{{admin_token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
